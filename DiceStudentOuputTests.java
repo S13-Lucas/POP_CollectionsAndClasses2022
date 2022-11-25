@@ -4,12 +4,13 @@ public class DiceStudentOuputTests{
         //Create the Dice
         Dice dice = new Dice();
 
+
         //Task 1
-        //System.out.println("Dice facevalue: "+dice.getFaceValue());
-        //dice.roll();
-        //System.out.println("Dice facevalue: "+dice.getFaceValue());
+        System.out.println("Dice faceValue: "+dice.getFaceValue());
+        dice.roll();
+        System.out.println("Dice faceValue: "+dice.getFaceValue());
 
         //Task 2
-        //System.out.println("Dice object "+dice);
+        System.out.println("Dice object "+dice);
     }
 }

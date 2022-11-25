@@ -5,69 +5,104 @@ import java.util.Collections;
 
 public class ProcessNames {
 
-	//Task 1 - read in all data from a file
-	public ArrayList<String> readNames(String fileName) throws Exception {
-		ArrayList<String> names = new ArrayList<String>(); //create array list names 'names'
+    //Task 1 - read in all data from a file
 
-		File fileOfNames = new File(fileName);
-		Scanner fileScan = new Scanner(fileOfNames); //create scanner object
+    /**
+     * reads names from a file, regardless of number, and puts them in an array list
+     * @param fileName holds file name
+     * @return returns array list of names
+     * @throws Exception
+     */
+    public ArrayList<String> readNames(String fileName) throws Exception {
+        ArrayList<String> names = new ArrayList<String>();
 
-		while (fileScan.hasNext()) { // use while loop as we do not know how many items need to be scanned, (until there are no more items to scan)
+        File fileOfNames = new File(fileName);
+        Scanner fileScan = new Scanner(fileOfNames);
 
-			names.add(fileScan.nextLine()); // add scanned item to array list
-		}
-		fileScan.close();
-		return names;
-	}
+        while (fileScan.hasNext()) {
 
-
-	//Task 2 - sort the data
-	public ArrayList<String> sortNames(ArrayList<String> myNames) {
-		Collections.sort(myNames);// use sort method to sort array list
-		return myNames;
-	}
-
-
-
-	//Task3 - find name position
-	public int findNamePosition(ArrayList<String> myNames, String name) {
-		boolean isFound = false; // create a found condition so that the while loop can end, use isFound naming convention as it is a boolean
-		int i = 0;
-
-		while (isFound == false && i < myNames.size()) { // loop while the item isn't found and i isn't larger than size of array as to not get element out of bounds error
-			if(myNames.get(i).equals(name)) {
-				isFound = true;
-			} else {
-				i++;
-			}
-		}
-		if (isFound == true) {
-			return i;
-		} else {
-			return -1; // return -1 to show the element was not found
-		}
-	}
+            names.add(fileScan.nextLine());
+        }
+        fileScan.close();
+        return names;
+    }
 
 
-	//Task4 - delete name
-	public ArrayList<String> deleteName(ArrayList<String> myNames, String name) {
-		boolean found = false;
-		int i = 0;
+    //Task 2 - sort the data
 
-		while (found == false && i < myNames.size()) {
-			if (myNames.get(i).equals(name)) { // if element is the same as given name
-				myNames.remove(i); //  remove that element
-				found = true;
-			} else {
-				i++;
-			}
-		}
-		return myNames;
-	}
+    /**
+     * used sort method to sort names in an array list
+     * @param myNames holds array list of names
+     * @return returns sorted array list
+     */
+    public ArrayList<String> sortNames(ArrayList<String> myNames) {
+        Collections.sort(myNames);
+        return myNames;
+    }
 
-	//Task5 - change name
-	public ArrayList<String> changeName(ArrayList<String> myNames, String nameX, String newName){
-		myNames.set(findNamePosition(myNames,nameX),newName); // set element to newName where nameX was, found position using findNamePosition
-		return myNames;
-	}
+
+
+    //Task3 - find name position
+
+    /**
+     * takes a name for an input and performs a linear search to find the index of search item or if it is not in the array list
+     * @param myNames holds array list of names
+     * @param name holds search item
+     * @return returns index of search item
+     */
+    public int findNamePosition(ArrayList<String> myNames, String name) {
+        boolean isFound = false;
+        int i = 0;
+
+        while (!isFound && i < myNames.size()) {
+            if(myNames.get(i).equalsIgnoreCase(name)) {
+                isFound = true;
+            } else {
+                i++;
+            }
+        }
+        if (isFound) {
+            return i;
+        } else {
+            return -1; // return -1 to show the element was not found
+        }
+    }
+
+
+    //Task4 - delete name
+
+    /**
+     * finds a specified search item from an array list and removes that item
+     * @param myNames holds array list of names
+     * @param name holds search item
+     * @return returns modified array list
+     */
+    public ArrayList<String> deleteName(ArrayList<String> myNames, String name) {
+        boolean found = false;
+        int i = 0;
+
+        while (!found && i < myNames.size()) {
+            if (myNames.get(i).equals(name)) { // if element is the same as given name
+                myNames.remove(i); //  remove that element
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        return myNames;
+    }
+
+    //Task5 - change name
+
+    /**
+     * finds a specified search item in an array list and replaces that item with a new specified name
+     * @param myNames holds array list of names
+     * @param nameX holds search item
+     * @param newName holds new name
+     * @return returns modified array list
+     */
+    public ArrayList<String> changeName(ArrayList<String> myNames, String nameX, String newName){
+        myNames.set(findNamePosition(myNames,nameX),newName); // set element to newName where nameX was, found position using findNamePosition
+        return myNames;
+    }
 }

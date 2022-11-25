@@ -5,8 +5,8 @@ public class CrapsStudentOutputTests {
         //craps.shoot();
 
         //Task 1
-        //System.out.println("Dice1: "+craps.getDice1().getFaceValue());
-        //System.out.println("Dice2: "+craps.getDice2().getFaceValue());
+        System.out.println("Dice1: "+craps.getDice1().getFaceValue());
+        System.out.println("Dice2: "+craps.getDice2().getFaceValue());
 
         //Task 2
         //System.out.println("Score is "+ craps.addUpScore());
